@@ -1,24 +1,29 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import { getAll } from "./requests/index";
+import { useEffect, useState } from 'react';
+import './App.css';
+import { DogUseCases } from './use-cases/DogUseCases';
+import { GlobalStateService } from './store/GlobalStateService';
 
 function App() {
-  const [breeds, setBreeds] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+  const dogs = GlobalStateService.getDogsData(); // Obtener los perros desde el estado global
 
   useEffect(() => {
-    getAll().then((result) => {
-      console.log(result);
-      setBreeds(result ?? []);
+    DogUseCases.retrieveDogs().finally(() => {
+      setLoading(false); // Quitamos el estado de carga una vez que la petición se completa
     });
   }, []);
 
+  if (loading) return <p>Cargando perros...</p>;
+
   return (
     <div>
-      <h1>Razas</h1>
+      <h1>Lista de Perros</h1>
       <ul>
-        {breeds.map((i: any) => {
-          return <li>{i.name}</li>;
-        })}
+        {dogs.map((dog) => (
+          <li key={dog.id}>
+            <p>{dog.name}</p>
+          </li>
+        ))}
       </ul>
     </div>
   );
