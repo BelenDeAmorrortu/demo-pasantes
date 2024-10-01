@@ -10,27 +10,43 @@ interface IDog {
 
 interface IDataGlobalState {
   dogs: IDog[];
+  cats: any[];
 }
 
 const initialData: IDataGlobalState = {
   dogs: [],
+  cats: [],
 };
 
 const globalDataState = create(() => initialData);
 
-export const GlobalStateService = {
-  getDogsData() {
-    return globalDataState((state) => state.dogs);
-  },
-  setDogsData(dogsData: IDog[]) {
-    globalDataState.setState({
-      dogs: dogsData,
-    });
-  },
-  removeDogsData() {
-    globalDataState.setState((prev) => ({
+const getDogsData = () => {
+  return globalDataState((state) => state.dogs);
+};
+
+const getDogsDataOutsideComponent = () => {
+  return globalDataState.getState().dogs;
+};
+
+const setDogsData = (dogsData: IDog[]) => {
+  globalDataState.setState((prev) => {
+    return {
       ...prev,
-      dogs: [],
-    }));
-  },
+      dogs: dogsData,
+    };
+  });
+};
+
+const removeDogsData = () => {
+  globalDataState.setState((prev) => ({
+    ...prev,
+    dogs: [],
+  }));
+};
+
+export const GlobalStateService = {
+  getDogsData,
+  getDogsDataOutsideComponent,
+  setDogsData,
+  removeDogsData,
 };
