@@ -1,21 +1,17 @@
 // src/store/globalDataStateService.ts
-import { create } from 'zustand';
-
-interface IDog {
-  id: number;
-  name: string;
-  image: { url: string };
-  // Puedes agregar más campos dependiendo de la respuesta de The Dog API
-}
+import { create } from "zustand";
+import { IDog } from "../types";
 
 interface IDataGlobalState {
   dogs: IDog[];
   cats: any[];
+  randomImages: string[];
 }
 
 const initialData: IDataGlobalState = {
   dogs: [],
   cats: [],
+  randomImages: [],
 };
 
 const globalDataState = create(() => initialData);
@@ -44,9 +40,24 @@ const removeDogsData = () => {
   }));
 };
 
+const getRandomImages = () => {
+  return globalDataState((state) => state.randomImages);
+};
+
+const setRandomImages = (randomImages: string[]) => {
+  globalDataState.setState((prev) => {
+    return {
+      ...prev,
+      randomImages,
+    };
+  });
+};
+
 export const GlobalStateService = {
   getDogsData,
   getDogsDataOutsideComponent,
   setDogsData,
   removeDogsData,
+  setRandomImages,
+  getRandomImages,
 };

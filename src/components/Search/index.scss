@@ -1,0 +1,20 @@
+.custom-autocomplete {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.ant-input-search-button {
+  background-color: #00bfff; /* Color celeste */
+  border-color: #00bfff;
+}
+
+.ant-input-search-button:hover {
+  background-color: #00a4d6;
+  border-color: #00a4d6;
+}
+
+.ant-input-affix-wrapper {
+  border-radius: 8px;
+  border-color: lightgray;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
