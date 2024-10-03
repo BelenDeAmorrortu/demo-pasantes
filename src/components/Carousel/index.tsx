@@ -1,16 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel as AntCarousel } from "antd";
 import styles from "./index.module.scss";
-import { DogUseCases } from "../../use-cases/DogUseCases";
-import { GlobalStateService } from "../../store/GlobalStateService";
+import { axiosInstance } from "../../services/axiosInstance";
 
 interface IProps {}
 
 const Carousel = ({}: IProps) => {
-  const images = GlobalStateService.getRandomImages();
+  const [images, setImages] = useState<string[]>();
+
+  const getImages = async () => {
+    try {
+      const { data } = await axiosInstance.get("/images/search?limit=10");
+      setImages(data.map((i: any) => i.url));
+    } catch (errorUseCase: any) {
+      console.log({ errorUseCase });
+    }
+  };
 
   useEffect(() => {
-    DogUseCases.retrieveRandomImages();
+    getImages();
   }, []);
 
   return (
