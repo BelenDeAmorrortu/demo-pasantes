@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { DogUseCases } from './use-cases/DogUseCases';
 import { GlobalStateService } from './store/GlobalStateService';
+import PostButton from './screens/post';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div>
+      <PostButton />
       <h1>Lista de Perros</h1>
       <ul>
         {dogs.map((dog) => (

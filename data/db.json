@@ -1,13 +1,37 @@
 {
   "breeds": [
     {
-      "id": 1,
+      "id": "1",
       "source": "database",
       "name": "Belu",
       "life_span": "1 - 2 years",
       "origin": "Argentina",
       "image": "https://m.media-amazon.com/images/I/6135NW3fw0L.png",
       "temperament": "Aloof, Clownish, Dignified, Independent, Happy"
+    },
+    {
+      "id": "f032",
+      "hola": "pepe"
+    },
+    {
+      "id": "903b",
+      "test": "Funciona?"
+    }
+  ],
+  "gatos": [
+    {
+      "id": "2a67",
+      "test": "Funciona?"
+    },
+    {
+      "id": "7643",
+      "hola": "pepe"
+    }
+  ],
+  "ratas": [
+    {
+      "id": "1889",
+      "hola": "pepe"
     }
   ]
 }
