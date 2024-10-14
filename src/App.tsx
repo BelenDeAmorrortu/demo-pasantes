@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { DogUseCases } from './use-cases/DogUseCases';
 import { GlobalStateService } from './store/GlobalStateService';
+import Card from './components/Card';
+import { Flex } from 'antd';
+import Nav from './components/Nav';
+import Carousel from './components/Carousel';
 import PostButton from './screens/post';
 
 function App() {
@@ -17,17 +21,22 @@ function App() {
   if (loading) return <p>Cargando perros...</p>;
 
   return (
-    <div>
-      <PostButton />
-      <h1>Lista de Perros</h1>
-      <ul>
-        {dogs.map((dog) => (
-          <li key={dog.id}>
-            <p>{dog.name}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <main>
+      <Nav />
+      <div
+        style={{
+          alignContent: 'center',
+        }}
+      >
+        <Carousel />
+        <PostButton />
+        <Flex wrap gap={20} justify='center'>
+          {dogs?.map((i) => {
+            return <Card dog={i} />;
+          })}
+        </Flex>
+      </div>
+    </main>
   );
 }
 

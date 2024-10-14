@@ -1,0 +1,18 @@
+.container {
+  max-width: 80vw;
+  height: 60vh;
+  margin: 20px auto;
+  background-color: #ffffff; /* blanco */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* sombra ligera */
+  position: relative;
+  overflow: hidden;
+
+  .image {
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+  }
+}
